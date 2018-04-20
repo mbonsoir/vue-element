@@ -1,0 +1,13 @@
+{
+  "presets":[
+    ["env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["ie >=9"]
+      },
+      "useBuiltIns": true,
+      "debug": true
+    }]
+  ],
+  "plugins":["syntax-dynamic-import"]
+}
