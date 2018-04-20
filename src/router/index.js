@@ -7,6 +7,8 @@ Vue.use(Router)
 
 const Index = () => import('../components/index.vue')
 const Main= () => import('../components/main/main.vue')
+const Food= () => import('../components/food/food.vue')
+const NotFound= () => import('../components/not-found/not-found.vue')
 
 const routes = [
     {
@@ -20,6 +22,14 @@ const routes = [
             {
                 path:'main',
                 component:Main
+            },
+            {
+                path:'food',
+                component:Food
+            },
+            {
+                path:"*",
+                component:NotFound
             }
         ]
     },

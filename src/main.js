@@ -3,6 +3,7 @@
  * Created by admin on 2018/4/17.
  */
 import 'babel-polyfill'
+import 'element-ui/lib/theme-chalk/index.css';
 import Vue from 'vue'
 import elementUi from 'element-ui'
 import router from './router'

@@ -1,6 +1,8 @@
 <template>
-    <el-container>
-        <el-header></el-header>
+    <el-container :style="{ height : offSetHeight }">
+        <el-header class="blue" height="80px">
+            <span class="headerTitle">饿了呀</span>
+        </el-header>
         <el-container>
             <el-aside width="200px">
                 <el-row class="tac">
@@ -10,40 +12,39 @@
                                 class="el-menu-vertical-demo"
                                 @open="handleOpen"
                                 @close="handleClose"
-                                background-color="#545c64"
-                                text-color="#fff"
+                                text-color="#666"
                                 active-text-color="#ffd04b"
                                 router
                         >
                             <el-submenu index="1">
                                 <template slot="title">
                                     <i class="el-icon-location"></i>
-                                    <span>我</span>
+                                    <span>有吃的</span>
                                 </template>
                                 <el-menu-item-group>
-                                    <el-menu-item index="/index/main">头部</el-menu-item>
-                                    <el-menu-item index="/index">胸部</el-menu-item>
-                                    <el-menu-item index="/index">大腿</el-menu-item>
-                                    <el-menu-item index="/index">脚</el-menu-item>
+                                    <el-menu-item index="/index/main">主页</el-menu-item>
+                                    <el-menu-item index="/index/food">食物</el-menu-item>
+                                    <el-menu-item index="/index/car">购物车</el-menu-item>
+                                    <el-menu-item index="/index/order">订单</el-menu-item>
                                 </el-menu-item-group>
                             </el-submenu>
                             <el-submenu index="2">
                                 <template slot="title">
                                     <i class="el-icon-menu"></i>
-                                    <span slot="title">你</span>
+                                    <span slot="title">生活馆</span>
                                 </template>
                                 <el-menu-item-group>
-                                    <el-menu-item index="/index/main">头部</el-menu-item>
-                                    <el-menu-item index="/index">胸部</el-menu-item>
+                                    <el-menu-item index="/index/rim">周边</el-menu-item>
+                                    <el-menu-item index="/index/peripheral">外设</el-menu-item>
                                 </el-menu-item-group>
                             </el-submenu>
-                            <el-menu-item index="3" disabled>
+                            <el-menu-item index="3">
                                 <i class="el-icon-document"></i>
-                                <span slot="title">导航三</span>
+                                <span slot="title">加入我们</span>
                             </el-menu-item>
                             <el-menu-item index="4">
                                 <i class="el-icon-setting"></i>
-                                <span slot="title">导航四</span>
+                                <span slot="title">体验</span>
                             </el-menu-item>
                         </el-menu>
                     </el-col>
@@ -51,23 +52,29 @@
             </el-aside>
             <el-container>
                 <el-main>
-                    <router-view></router-view>
+                    <el-collapse-transition>
+                        <router-view></router-view>
+                    </el-collapse-transition>
                 </el-main>
-                <el-footer></el-footer>
             </el-container>
         </el-container>
     </el-container>
 </template>
-<style scoped>
-    .el-header, .el-footer {
-        background-color: #B3C0D1;
+<style lang="scss" scoped>
+    .headerTitle{
+        height: 80px;
+        float: left;
+        color: #fff;
+        font-size: 20px;
+    }
+    .el-header {
+        background-color: #48a3f4;
         color: #333;
         text-align: center;
-        line-height: 60px;
+        line-height: 80px;
     }
-
     .el-aside {
-        background-color: #D3DCE6;
+        background-color: #fff;
         color: #333;
         text-align: center;
         line-height: 200px;
@@ -83,15 +90,6 @@
     body > .el-container {
         margin-bottom: 40px;
     }
-
-    .el-container:nth-child(5) .el-aside,
-    .el-container:nth-child(6) .el-aside {
-        line-height: 260px;
-    }
-
-    .el-container:nth-child(7) .el-aside {
-        line-height: 320px;
-    }
     .el-menu-vertical-demo{
         text-align: left;
     }
@@ -99,7 +97,9 @@
 <script>
     export default {
         data () {
-            return {}
+            return {
+                offSetHeight:''
+            }
         },
         components:{
         },
@@ -110,6 +110,10 @@
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
             }
+        },
+        created(){
+            this.offSetHeight = window.innerHeight +'px'
+            console.log(window.innerHeight)
         }
     }
 </script>
