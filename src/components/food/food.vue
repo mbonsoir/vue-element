@@ -1,14 +1,25 @@
 <template>
     <div>
-        12345454
+        欢迎：{{$store.state.user.name}}
+        <!--<input type="text" :value="$store.state.user.name" @input="setName($event)">-->
     </div>
 </template>
 <script>
     export default {
         data () {
-            return {}
+            return {
+                age:18,
+                userName:''
+            }
         },
-        methods: {}
+        methods: {
+            setName(e){
+                this.$store.dispatch('setName',e.target.value)
+            }
+        },
+        created(){
+            this.userName  = this.$store.state.user.name
+        }
     }
 </script>
 <style scoped>

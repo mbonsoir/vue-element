@@ -4,11 +4,12 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const state = {
     'user':{
-        'name':'zhengbingjian',
-        'age':'18',
-        'sex':'boy',
-        'city':'fuzhou'
-    }
+        'name':'',
+        'age':'',
+        'sex':'',
+        'city':''
+    },
+    'login':false
 }
 const mutations = {
     setName(state,name){
@@ -22,6 +23,9 @@ const mutations = {
     },
     setCity(state,city){
         state.user.city = city
+    },
+    changeLogin(state,login){
+        state.login = login
     }
 }
 const actions = {
@@ -36,6 +40,9 @@ const actions = {
     },
     setCity({ commit },city){
         commit('setCity',city)
+    },
+    changeLogin({ commit },login){
+        commit('changeLogin',login)
     }
 }
 

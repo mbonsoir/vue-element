@@ -1,14 +1,19 @@
 <template>
     <el-container :style="{ height : offSetHeight }">
         <el-header class="blue" height="80px">
-            <span class="headerTitle">饿了呀</span>
+            <span class="headerTitle">{{$store.state.user.name || '请登录'}}</span>
         </el-header>
         <el-container>
             <el-aside width="200px">
                 <el-row class="tac">
                     <el-col>
+                        <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+                            <el-radio-button :label="false">展开</el-radio-button>
+                            <el-radio-button :label="true">收起</el-radio-button>
+                        </el-radio-group>
                         <el-menu
-                                default-active="2"
+                                :collapse="isCollapse"
+                                default-active="/index/main"
                                 class="el-menu-vertical-demo"
                                 @open="handleOpen"
                                 @close="handleClose"
@@ -16,13 +21,16 @@
                                 active-text-color="#ffd04b"
                                 router
                         >
+                            <el-menu-item index="/index/main">
+                                <i class="el-icon-document"></i>
+                                <span slot="title">主页</span>
+                            </el-menu-item>
                             <el-submenu index="1">
                                 <template slot="title">
                                     <i class="el-icon-location"></i>
                                     <span>有吃的</span>
                                 </template>
                                 <el-menu-item-group>
-                                    <el-menu-item index="/index/main">主页</el-menu-item>
                                     <el-menu-item index="/index/food">食物</el-menu-item>
                                     <el-menu-item index="/index/car">购物车</el-menu-item>
                                     <el-menu-item index="/index/order">订单</el-menu-item>
@@ -31,20 +39,26 @@
                             <el-submenu index="2">
                                 <template slot="title">
                                     <i class="el-icon-menu"></i>
-                                    <span slot="title">生活馆</span>
+                                    <span slot="title">有玩的</span>
                                 </template>
                                 <el-menu-item-group>
                                     <el-menu-item index="/index/rim">周边</el-menu-item>
                                     <el-menu-item index="/index/peripheral">外设</el-menu-item>
                                 </el-menu-item-group>
                             </el-submenu>
+                            <el-submenu index="5">
+                                <template slot="title">
+                                    <i class="el-icon-location"></i>
+                                    <span>有身份</span>
+                                </template>
+                                <el-menu-item-group>
+                                    <el-menu-item index="/index/food">资料</el-menu-item>
+                                    <el-menu-item index="/index/car">设置</el-menu-item>
+                                </el-menu-item-group>
+                            </el-submenu>
                             <el-menu-item index="3">
                                 <i class="el-icon-document"></i>
-                                <span slot="title">加入我们</span>
-                            </el-menu-item>
-                            <el-menu-item index="4">
-                                <i class="el-icon-setting"></i>
-                                <span slot="title">体验</span>
+                                <span slot="title">骑手营</span>
                             </el-menu-item>
                         </el-menu>
                     </el-col>
@@ -93,12 +107,17 @@
     .el-menu-vertical-demo{
         text-align: left;
     }
+    .el-menu-vertical-demo:not(.el-menu--collapse) {
+        width: 200px;
+        min-height: 400px;
+    }
 </style>
 <script>
     export default {
         data () {
             return {
-                offSetHeight:''
+                offSetHeight:'',
+                isCollapse:false
             }
         },
         components:{
@@ -112,8 +131,8 @@
             }
         },
         created(){
+            console.log(this)
             this.offSetHeight = window.innerHeight +'px'
-            console.log(window.innerHeight)
         }
     }
 </script>
